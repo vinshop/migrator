@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 	"errors"
-	migrator "github.com/vinshop/migration"
+	migrator "github.com/vinshop/migrator"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"go.mongodb.org/mongo-driver/mongo/readpref"

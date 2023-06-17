@@ -1,4 +1,4 @@
-module github.com/vinshop/migration
+module github.com/vinshop/migrator
 
 go 1.17
 

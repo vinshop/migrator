@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"github.com/fatih/color"
-	"github.com/vinshop/migration/model"
+	"github.com/vinshop/migrator/model"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
