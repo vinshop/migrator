@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	migrator "github.com/vinshop/migrator"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -57,6 +58,12 @@ func main() {
 	})
 
 	engine.Register("4", true, func(ctx context.Context, db *mongo.Database, version string) error {
+		if err := migrator.Batch(100, 10, func(skip int, limit int) error {
+			fmt.Printf("skip %v, limit %v\n", skip, limit)
+			return nil
+		}); err != nil {
+			return err
+		}
 		return migrator.DoNothing
 	})
 
