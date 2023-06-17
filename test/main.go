@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"errors"
 	migrator "github.com/vinshop/migrator"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -34,7 +33,7 @@ func NewMongoConnection(config *Source) (*mongo.Database, func() error, error) {
 
 func main() {
 	config := Source{
-		URI:          "mongodb://root:root@127.0.0.1:27017/test_migrator?authSource=admin",
+		URI:          "mongodb://root:root@127.0.0.1:27018/test_migrator?authSource=admin",
 		DatabaseName: "test_migrator",
 	}
 
@@ -58,7 +57,7 @@ func main() {
 	})
 
 	engine.Register("4", true, func(ctx context.Context, db *mongo.Database, version string) error {
-		return errors.New("error")
+		return migrator.DoNothing
 	})
 
 	engine.Run()

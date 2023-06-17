@@ -86,6 +86,10 @@ func (e *Engine) doMigration(currentVer *model.MigrationMeta, version Migrator) 
 	if version.Version > currentVer.CurrentVersion {
 		currentVer.CurrentVersion = version.Version
 		if err := e.migrate(version); err != nil {
+			if err == DoNothing {
+				s += color.BlueString("do nothing")
+				return nil
+			}
 			s += color.RedString(err.Error())
 			if err := e.updateCurrentVersion(currentVer.CurrentVersion, true); err != nil {
 				color.Red("error when update current version to %v, dirty: %v, error: %v", currentVer.CurrentVersion, true, err)
